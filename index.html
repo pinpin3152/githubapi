@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Card</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-2.2.4.min.js'></script> 
+	<link rel="stylesheet" type="text/css" href="1.css">
+	<script>
+		$(document).ready(function(){
+			$('#myform').submit(function(){
+				var firstname = $('#myform').find('input.first').val();
+				var lastname = $('#myform').find('input.last').val();
+				var desc = $('#myform').find('textarea.desc').val();
+				$('#cardcontent').append('<div id="card"><h1>' + firstname + " " + lastname + '</h1>' + '<p style="display:none;">' + desc + '</p>' + '<span>Click for description!</span>');
+				return false;
+			})
+			$('#getapi').submit(function(){
+				$.get('https://api.github.com/users/' + $('.user').val(), function(res){
+					console.log(res);
+					$('#cardcontent').append('<div id="card"><img src=' + res.avatar_url + '/><h1>' + res.name + '</h1>' + '<p style="display:none;">' + res.bio + '</p>' + '<span>Click for description!</span>');
+				})
+				return false;
+			})
+		})
+		$(document).on('click', '#cardcontent span',function(){
+			$('#card p').show();
+			$('#card h1,span,img').hide();
+		})
+		$(document).on('click', '#cardcontent p',function(){
+			$('#card p').hide();
+			$('#card h1,span,img').show();
+		})
+	</script>
+</head>
+<body>
+	<div id="info">
+		<div id="allform">
+			<form id="myform" method="post">
+				First name:<input type="text" class='first' value="">
+				Last name: <input type="text" class='last' value="">
+				<p>Description:</p> <textarea class='desc' rows="6" cols="25" wrap="hard"></textarea> 
+				<input type="submit" value="Add User">
+			</form>
+			<form id="getapi" method="post">
+				<label>Github User Name:</label>
+				<input type="text" class='user' value="" placeholder="Github user name">
+				<input type="submit" name="submit" value="Search Github">
+			</form>
+		</div>
+		<div id="cardcontent">
+		</div>
+	</div>
+</body>
+</html>

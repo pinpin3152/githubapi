@@ -1,0 +1,37 @@
+*{
+	padding: 0;
+	margin:0;
+}
+#info{
+	width: 1000px;
+	margin: 0 auto;
+}
+#info #allform,#cardcontent{
+	display: inline-block;
+	vertical-align: top;
+}
+	#info input,textarea{
+		display: block;
+		margin-bottom: 10px;
+	}
+#myform{
+	margin-right: 200px;
+}
+#card{
+	border: 2px solid black;
+	text-align: center;
+	width: 250px;
+	height: auto;
+	margin-bottom: 20px;
+}
+	#card p{
+		text-align: left;
+		font-size: 18px;
+	}
+	#card h1{
+		margin-bottom: 10px;
+	}
+	#card img{
+		width: 50px;
+		height: 50px;
+	}
